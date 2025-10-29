@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="lt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muzikos pamokos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Muzikos studija "PytRok"</h1>
+        <p>
+          Profesionalūs mokytojai ir įkvepiančios pamokos fortepijonui, vokalui bei džiazo improvizacijai.
+        </p>
+        <a class="cta" href="#kontaktai">Registruokis pamokai</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="pamokos">
+        <h2>Populiariausios pamokos</h2>
+        <div class="cards">
+          {% for lesson in lessons %}
+          <article class="card">
+            <h3>{{ lesson.title }}</h3>
+            <p>{{ lesson.description }}</p>
+            <ul>
+              <li><strong>Trukmė:</strong> {{ lesson.duration }}</li>
+              <li><strong>Skirta:</strong> {{ lesson.age_group }}</li>
+            </ul>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="section alt" id="mokytojai">
+        <h2>Mokytojų komanda</h2>
+        <div class="cards">
+          {% for teacher in teachers %}
+          <article class="card">
+            <h3>{{ teacher.name }}</h3>
+            <p class="instrument">{{ teacher.instrument }}</p>
+            <p>{{ teacher.bio }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="section" id="kontaktai">
+        <h2>Kontaktai</h2>
+        <div class="contact-grid">
+          <div>
+            <h3>Parašyk mums</h3>
+            <p>
+              Susitark dėl individualios konsultacijos arba gauk atsakymus į rūpimus klausimus.
+            </p>
+            <ul class="contact-list">
+              <li><strong>El. paštas:</strong> info@pytrok.lt</li>
+              <li><strong>Telefonas:</strong> +370 600 12345</li>
+              <li><strong>Adresas:</strong> Gedimino pr. 12, Vilnius</li>
+            </ul>
+          </div>
+          <form class="contact-form">
+            <label for="name">Vardas</label>
+            <input type="text" id="name" name="name" placeholder="Jūsų vardas" required />
+
+            <label for="email">El. paštas</label>
+            <input type="email" id="email" name="email" placeholder="Jūsų el. pašto adresas" required />
+
+            <label for="message">Žinutė</label>
+            <textarea id="message" name="message" rows="4" placeholder="Kuo galime padėti?" required></textarea>
+
+            <button type="submit">Siųsti</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; {{ current_year }} Muzikos studija "PytRok". Visos teisės saugomos.</p>
+    </footer>
+  </body>
+</html>
